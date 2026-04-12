@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Persona - EduFlow</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600&family=Manrope:wght@700;800&display=swap" rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    
+    <link rel="stylesheet" href="css/design-system.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center relative">
+    
+    <!-- Header -->
+    <div class="absolute top-0 w-full p-8 flex justify-between items-center z-10">
+        <a href="index.html" class="navbar-brand">
+            <span class="material-symbols-outlined">school</span>
+            EduFlow
+        </a>
+        <button class="theme-toggle btn-icon" id="theme-toggle">
+            <span class="material-symbols-outlined" id="theme-icon">dark_mode</span>
+        </button>
+    </div>
+
+    <!-- Main Content -->
+    <main class="w-full max-w-4xl px-8 fade-up text-center">
+        <div class="overline text-primary mb-2">Who are you?</div>
+        <h2 class="mb-12">Select your persona to enter the Cognitive Sanctuary</h2>
+
+        <div class="grid grid-cols-2 gap-8 relative z-10">
+            <!-- Student Card -->
+            <div class="card flex flex-col items-center text-center p-12 hover:-translate-y-4 group transition-all duration-300">
+                <div class="icon-container primary w-20 h-20 mb-6 rounded-2xl group-hover:scale-110 transition-transform">
+                    <span class="material-symbols-outlined text-4xl">school</span>
+                </div>
+                <h3 class="mb-4">Student</h3>
+                <p class="text-muted mb-8 text-sm flex-1">Access your assignments, review deep cognitive feedback, and track your learning journey over time.</p>
+                <a href="student-choice.html" class="btn btn-primary w-full">Continue as Student</a>
+            </div>
+
+            <!-- Tutor Card -->
+            <div class="card flex flex-col items-center text-center p-12 hover:-translate-y-4 group transition-all duration-300">
+                <div class="icon-container secondary w-20 h-20 mb-6 rounded-2xl group-hover:scale-110 transition-transform">
+                    <span class="material-symbols-outlined text-4xl">assignment_ind</span>
+                </div>
+                <h3 class="mb-4">Tutor</h3>
+                <p class="text-muted mb-8 text-sm flex-1">Manage curriculum, review AI-assisted grading suggestions, and provide meaningful mentorship.</p>
+                <a href="tutor-login.html" class="btn btn-primary w-full">Continue as Tutor</a>
+            </div>
+        </div>
+
+        <div class="mt-12 text-sm text-muted">
+            Need help choosing? <a href="index.html#how-it-works" class="text-primary hover:underline font-bold">Explore Role Features</a>
+        </div>
+    </main>
+
+    <!-- Background glow -->
+    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-gradient opacity-[0.03] blur-3xl rounded-full z-0 pointer-events-none"></div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

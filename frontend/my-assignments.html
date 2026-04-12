@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Assignments - EduFlow</title>
+    <!-- Fonts and Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600&family=Manrope:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="css/design-system.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <span class="material-symbols-outlined">menu</span>
+            <span class="material-symbols-outlined ml-2 text-primary">school</span>
+            EduFlow
+        </div>
+        <div class="navbar-links">
+            <a href="student-dashboard.html" class="nav-link">Dashboard</a>
+            <a href="my-assignments.html" class="nav-link active">Courses</a>
+            <a href="#" class="nav-link">Resources</a>
+        </div>
+        <div class="navbar-right">
+            <div class="avatar avatar-sm border border-[var(--outline-variant)]">JD</div>
+            <button class="theme-toggle btn-icon" id="theme-toggle">
+                <span class="material-symbols-outlined" id="theme-icon">dark_mode</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <aside class="sidebar border-r border-[var(--surface-container-high)]">
+        <div class="sidebar-header">
+            <div class="sidebar-label mb-1">Academic Portal</div>
+            <div class="text-xs text-muted font-medium">Student View</div>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <a href="student-dashboard.html" class="sidebar-item">
+                <span class="material-symbols-outlined">dashboard</span>
+                <span>Dashboard</span>
+            </a>
+            <a href="my-assignments.html" class="sidebar-item active">
+                <span class="material-symbols-outlined">collections_bookmark</span>
+                <span>My Courses</span>
+            </a>
+            <a href="submit-assignment.html" class="sidebar-item">
+                <span class="material-symbols-outlined">publish</span>
+                <span>Submissions</span>
+            </a>
+            <a href="grades-feedback.html" class="sidebar-item">
+                <span class="material-symbols-outlined">analytics</span>
+                <span>Grades Feedback</span>
+            </a>
+            <a href="#" class="sidebar-item">
+                <span class="material-symbols-outlined">library_books</span>
+                <span>Library</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer mt-auto">
+            <div class="avatar avatar-sm">JD</div>
+            <div class="flex-1 overflow-hidden">
+                <div class="font-bold text-sm truncate">Julian Doe</div>
+                <div class="text-xs text-muted truncate">julian.doe@edu.org</div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        
+        <!-- Page Header -->
+        <div class="mb-10 fade-up">
+            <div class="overline text-primary mb-2">SPRING SEMESTER 2024</div>
+            <h1 class="mb-4">My Assignments</h1>
+            <p class="text-lg text-muted">Manage your upcoming deliverables and review finalized feedback.</p>
+        </div>
+
+        <!-- Filter & Search Row -->
+        <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 mb-10 fade-up">
+            <div class="flex flex-wrap gap-2 bg-low p-1.5 rounded-full border border-[var(--surface-container-high)] w-full lg:w-auto overflow-x-auto">
+                <button class="filter-tab btn btn-ghost py-2 px-6 rounded-full text-sm shrink-0 bg-gradient text-white" data-filter="all">All</button>
+                <button class="filter-tab btn btn-ghost py-2 px-6 rounded-full text-sm text-muted shrink-0" data-filter="pending">Pending</button>
+                <button class="filter-tab btn btn-ghost py-2 px-6 rounded-full text-sm text-muted shrink-0" data-filter="submitted">Submitted</button>
+                <button class="filter-tab btn btn-ghost py-2 px-6 rounded-full text-sm text-muted shrink-0" data-filter="ai-review">Under AI Review</button>
+                <button class="filter-tab btn btn-ghost py-2 px-6 rounded-full text-sm text-muted shrink-0" data-filter="graded">Graded</button>
+            </div>
+            
+            <div class="input-wrapper w-full lg:w-80">
+                <span class="material-symbols-outlined input-icon text-muted">search</span>
+                <input type="text" id="assignment-search" class="input-field bg-highest border-none rounded-full" placeholder="Search topics...">
+            </div>
+        </div>
+
+        <!-- Assignments Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 fade-up-stagger">
+            
+            <!-- Card 1: Pending -->
+            <div class="card assignment-card flex flex-col pt-8 card-accent-left relative" data-status="pending">
+                <div class="absolute top-4 right-4 badge badge-urgent shadow-sm">
+                    <span class="material-symbols-outlined text-xs">schedule</span> 2 days left
+                </div>
+                <div class="overline text-primary mb-4">PHYSICS 101</div>
+                <h3 class="mb-3 leading-tight">Quantum Mechanics: Problem Set 4</h3>
+                <p class="text-muted text-sm mb-6 flex-1">Analyze wave function collapse probabilities for given double slit configurations. Show your working explicitly.</p>
+                
+                <div class="text-sm font-bold text-pending mb-4">Status: Pending</div>
+                <a href="submit-assignment.html" class="btn btn-primary w-full shadow-ambient">Submit &rarr;</a>
+            </div>
+
+            <!-- Card 2: AI Review -->
+            <div class="card assignment-card shadow-ambient flex flex-col pt-8 border border-[var(--surface-container-high)] border-transparent" data-status="ai-review">
+                <div class="absolute top-4 right-4 badge badge-ai">
+                    <span class="material-symbols-outlined text-xs">auto_awesome</span> AI Analyzing
+                </div>
+                <div class="overline text-secondary mb-4">LITERATURE</div>
+                <h3 class="mb-3 leading-tight">Critical Analysis: The Modernist Era</h3>
+                <p class="text-muted text-sm mb-6 flex-1">A deep dive into Woolf and Joyce. Cognitive AI is currently analyzing your structural arguments and citations.</p>
+                
+                <div class="w-full bg-[var(--surface-container-high)] rounded-full h-1.5 mb-2 overflow-hidden">
+                    <div class="bg-[var(--primary)] h-1.5 rounded-full" style="width: 45%;"></div>
+                </div>
+                <div class="text-xs text-muted mb-4 font-bold">Estimated: 10m left</div>
+                
+                <a href="submit-assignment.html" class="btn btn-ghost border border-[var(--outline-variant)] w-full w-full">View Draft</a>
+            </div>
+
+            <!-- Card 3: Graded -->
+            <div class="card assignment-card shadow-ambient flex flex-col pt-8 border border-[var(--surface-container-high)] border-transparent" data-status="graded">
+                <div class="absolute top-4 right-4 badge badge-graded">
+                    94%
+                </div>
+                <div class="overline text-tertiary mb-4">DATA SCIENCE</div>
+                <h3 class="mb-3 leading-tight">Neural Network Architecture Project</h3>
+                <p class="text-muted text-sm mb-6 flex-1">Design and implementation of a convolutional neural network for image recognition. PyTorch file submitted.</p>
+                
+                <div class="text-sm font-bold text-[var(--status-graded-text)] mb-4">Grade: Excellent</div>
+                <a href="grades-feedback.html" class="btn btn-ghost bg-[var(--surface-container-low)] w-full text-[var(--on-surface)]">View Feedback</a>
+            </div>
+
+            <!-- Card 4: Submitted -->
+            <div class="card assignment-card shadow-ambient flex flex-col pt-8 border border-[var(--surface-container-high)] border-transparent" data-status="submitted">
+                <div class="absolute top-4 right-4 badge badge-submitted">
+                    Submitted
+                </div>
+                <div class="overline text-primary mb-4">HISTORY</div>
+                <h3 class="mb-3 leading-tight">Post-War Economics</h3>
+                <p class="text-muted text-sm mb-6 flex-1">Analysis of the Marshall Plan and its long-term effects on European cognitive infrastructure development.</p>
+                
+                <div class="text-sm font-bold text-muted mb-4">Waiting for Tutor</div>
+                <a href="submit-assignment.html" class="text-sm text-primary font-bold hover:underline">View Submission</a>
+            </div>
+
+            <!-- Dark CTA Card -->
+            <div class="card assignment-card flex flex-col pt-8 bg-gradient text-white shadow-hover">
+                <div class="icon-container mb-4 text-white opacity-80">
+                    <span class="material-symbols-outlined text-4xl">psychology</span>
+                </div>
+                <h3 class="text-white mb-4">Academic Resilience</h3>
+                <p class="text-sm opacity-90 mb-6 italic">"It's not that I'm so smart, it's just that I stay with problems longer." — A. Einstein</p>
+                
+                <div class="mt-auto flex flex-col gap-3">
+                    <button class="btn bg-white text-[var(--primary)] w-full text-sm">Explore Library</button>
+                    <button class="btn bg-white/20 text-white w-full text-sm border-none">Career Guidance</button>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <script src="js/main.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

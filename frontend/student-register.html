@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Student - EduFlow</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600&family=Manrope:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="css/design-system.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+<body class="min-h-screen flex bg-surface">
+    <!-- Left Panel (40%) -->
+    <div class="hidden lg:flex w-[40%] bg-low flex-col justify-between p-12 relative overflow-hidden border-r border-[var(--surface-container-high)] border-r-2">
+        <div class="relative z-10">
+            <a href="index.html" class="navbar-brand mb-12 inline-flex">
+                <span class="material-symbols-outlined">school</span>
+                EduFlow
+            </a>
+            
+            <div class="overline text-primary mb-4">Join the Cognitive Sanctuary</div>
+            <h2 class="mb-6">Optimize your academic future.</h2>
+            <p class="text-muted mb-12">Create an account to track your progress, submit assignments seamlessly, and leverage AI analysis for instant feedback.</p>
+            
+            <div class="card bg-surface-lowest shadow-ambient p-6 flex flex-col gap-4 border-l-4 border-[var(--primary)]">
+                <div class="icon-container primary rounded-full w-12 h-12">
+                    <span class="material-symbols-outlined">auto_awesome</span>
+                </div>
+                <h4 class="text-lg">Adaptive Pathways</h4>
+                <p class="text-sm text-muted">Our AI tailors your journey based on subject selection. Choose your core interests carefully on the right.</p>
+            </div>
+        </div>
+
+        <!-- Abstract visual (CSS only placeholder for student studying) -->
+        <div class="absolute -bottom-10 -right-10 w-96 h-96 bg-[var(--surface-container-high)] rounded-full pt-16 pl-16 opacity-50 z-0">
+            <div class="w-full h-full rounded-full bg-gradient opacity-20"></div>
+        </div>
+    </div>
+
+    <!-- Right Panel (60%) -->
+    <div class="w-full lg:w-[60%] flex flex-col bg-lowest overflow-y-auto h-screen relative">
+        <div class="absolute top-8 right-8 z-10">
+            <button class="theme-toggle btn-icon" id="theme-toggle">
+                <span class="material-symbols-outlined" id="theme-icon">dark_mode</span>
+            </button>
+        </div>
+
+        <div class="p-8 md:p-16 max-w-3xl m-auto w-full fade-up pt-24">
+            <div class="flex justify-between items-center mb-10">
+                <h2>Create Account</h2>
+                <div class="badge badge-ai">STEP 01</div>
+            </div>
+
+            <form id="register-form" action="student-dashboard.html" method="GET">
+                <div class="grid grid-cols-2 gap-6 mb-6">
+                    <div class="form-group col-span-2 md:col-span-1">
+                        <label class="form-label" for="fname">First Name</label>
+                        <div class="input-wrapper">
+                            <input type="text" id="fname" class="input-field" style="padding-left: 1rem;" placeholder="Julian" required>
+                        </div>
+                        <div class="form-error"></div>
+                    </div>
+                    <div class="form-group col-span-2 md:col-span-1">
+                        <label class="form-label" for="lname">Last Name</label>
+                        <div class="input-wrapper">
+                            <input type="text" id="lname" class="input-field" style="padding-left: 1rem;" placeholder="Vance" required>
+                        </div>
+                        <div class="form-error"></div>
+                    </div>
+                </div>
+
+                <div class="form-group mb-6">
+                    <label class="form-label" for="email">Institutional Email</label>
+                    <div class="input-wrapper">
+                        <span class="material-symbols-outlined input-icon">mail</span>
+                        <input type="email" id="email" class="input-field" placeholder="student@university.edu" required>
+                    </div>
+                    <div class="form-error"></div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-6 mb-12">
+                    <div class="form-group col-span-2 md:col-span-1">
+                        <label class="form-label" for="password">Secure Password</label>
+                        <div class="input-wrapper">
+                            <span class="material-symbols-outlined input-icon">lock</span>
+                            <input type="password" id="password" class="input-field" placeholder="••••••••" required>
+                            <button type="button" class="input-toggle" tabindex="-1">
+                                <span class="material-symbols-outlined">visibility</span>
+                            </button>
+                        </div>
+                        <div class="form-error"></div>
+                    </div>
+                    <div class="form-group col-span-2 md:col-span-1">
+                        <label class="form-label" for="grade">Grade Level</label>
+                        <div class="input-wrapper">
+                            <select id="grade" class="input-field font-lexend" style="padding-left: 1rem;" required>
+                                <option value="" disabled selected>Select Level</option>
+                                <option value="6">Grade 6</option>
+                                <option value="7">Grade 7</option>
+                                <option value="8">Grade 8</option>
+                                <option value="9">Grade 9</option>
+                                <option value="10">Grade 10</option>
+                                <option value="11">Grade 11</option>
+                                <option value="12">Grade 12</option>
+                                <option value="ug">Undergraduate</option>
+                                <option value="pg">Postgraduate</option>
+                            </select>
+                        </div>
+                        <div class="form-error"></div>
+                    </div>
+                </div>
+
+                <!-- Subjects -->
+                <div class="mb-12">
+                    <div class="overline text-primary mb-4">Select Core Interests (At least one)</div>
+                    <div class="form-error" id="subject-error" style="display:none; margin-bottom:1rem;">Please select at least one core interest.</div>
+                    
+                    <div class="subject-grid">
+                        <div class="subject-chip">
+                            <span class="material-symbols-outlined text-3xl">functions</span>
+                            <span class="font-bold text-sm">Mathematics</span>
+                        </div>
+                        <div class="subject-chip">
+                            <span class="material-symbols-outlined text-3xl">science</span>
+                            <span class="font-bold text-sm">Physics</span>
+                        </div>
+                        <div class="subject-chip">
+                            <span class="material-symbols-outlined text-3xl">experiment</span>
+                            <span class="font-bold text-sm">Chemistry</span>
+                        </div>
+                        <div class="subject-chip">
+                            <span class="material-symbols-outlined text-3xl">genetics</span>
+                            <span class="font-bold text-sm">Biology</span>
+                        </div>
+                        <div class="subject-chip">
+                            <span class="material-symbols-outlined text-3xl">menu_book</span>
+                            <span class="font-bold text-sm">English</span>
+                        </div>
+                        <div class="subject-chip">
+                            <span class="material-symbols-outlined text-3xl">code</span>
+                            <span class="font-bold text-sm">Computer Science</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-10">
+                    <label class="checkbox-label p-4 bg-low rounded-xl">
+                        <input type="checkbox" class="checkbox-input" required>
+                        <span class="text-sm text-muted">I acknowledge that I have read and agree to the <a href="#" class="text-primary hover:underline font-bold">Terms of service</a> and <a href="#" class="text-primary hover:underline font-bold">Privacy Policy</a> regarding my educational data.</span>
+                    </label>
+                </div>
+
+                <div class="flex items-center gap-6">
+                    <button type="submit" class="btn btn-primary py-4 px-8 text-lg flex-[2]">Register Account &rarr;</button>
+                    <div class="text-sm text-muted text-center flex-[1]">
+                        Already registered?<br/><a href="student-login.html" class="text-primary font-bold hover:underline">Sign In</a>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>

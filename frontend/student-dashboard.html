@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard - EduFlow</title>
+    <!-- Fonts and Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600&family=Manrope:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="css/design-system.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <!-- Inline CSS for Bar Chart as allowed -->
+    <style>
+        .bar-chart {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            height: 200px;
+            padding-top: 2rem;
+            gap: 1rem;
+        }
+        .bar-col {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            height: 100%;
+        }
+        .bar {
+            width: 100%;
+            border-radius: 4px 4px 0 0;
+            background-color: var(--surface-container-highest);
+            transition: all 0.3s ease;
+        }
+        .bar-col:hover .bar {
+            background-color: var(--primary-fixed);
+        }
+        .bar.active {
+            background: var(--signature-gradient);
+            position: relative;
+        }
+        .bar.active::after {
+            content: "92%";
+            position: absolute;
+            top: -24px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        .bar-label {
+            margin-top: 0.5rem;
+            font-size: 0.75rem;
+            color: var(--outline);
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <span class="material-symbols-outlined">menu</span>
+            <span class="material-symbols-outlined ml-2 text-primary">school</span>
+            EduFlow
+        </div>
+        <div class="navbar-links">
+            <a href="student-dashboard.html" class="nav-link active">Dashboard</a>
+            <a href="my-assignments.html" class="nav-link">Courses</a>
+            <a href="#" class="nav-link">Resources</a>
+        </div>
+        <div class="navbar-right">
+            <div class="avatar avatar-sm border border-[var(--outline-variant)]">JD</div>
+            <button class="theme-toggle btn-icon" id="theme-toggle">
+                <span class="material-symbols-outlined" id="theme-icon">dark_mode</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <aside class="sidebar border-r border-[var(--surface-container-high)]">
+        <div class="sidebar-header">
+            <div class="sidebar-label mb-1">Academic Portal</div>
+            <div class="text-xs text-muted font-medium">Student View</div>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <a href="student-dashboard.html" class="sidebar-item active">
+                <span class="material-symbols-outlined">dashboard</span>
+                <span>Dashboard</span>
+            </a>
+            <a href="my-assignments.html" class="sidebar-item">
+                <span class="material-symbols-outlined">collections_bookmark</span>
+                <span>My Courses</span>
+            </a>
+            <a href="submit-assignment.html" class="sidebar-item">
+                <span class="material-symbols-outlined">publish</span>
+                <span>Submissions</span>
+            </a>
+            <a href="grades-feedback.html" class="sidebar-item">
+                <span class="material-symbols-outlined">analytics</span>
+                <span>Grades Feedback</span>
+            </a>
+            <a href="#" class="sidebar-item">
+                <span class="material-symbols-outlined">library_books</span>
+                <span>Library</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer mt-auto">
+            <div class="avatar avatar-sm">JD</div>
+            <div class="flex-1 overflow-hidden">
+                <div class="font-bold text-sm truncate">Julian Doe</div>
+                <div class="text-xs text-muted truncate">julian.doe@edu.org</div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        
+        <!-- Welcome Banner -->
+        <div class="bg-gradient rounded-2xl p-8 text-white flex justify-between items-center mb-10 shadow-ambient fade-up">
+            <div>
+                <h1 class="text-white text-3xl mb-2">Welcome back, Julian.</h1>
+                <p class="opacity-90 mb-6 text-lg">You have 12 assignments pending and 3 new feedback remarks to review.</p>
+                <div class="flex gap-4">
+                    <button class="btn" style="background-color: white; color: black; border: none;">Continue Calculus II</button>
+                    <button class="btn" style="background-color: rgba(255,255,255,0.2); color: white; border: none;">View Schedule</button>
+                </div>
+            </div>
+            <!-- Illustration Placeholder (Abstract CSS shapes) -->
+            <div class="hidden lg:flex w-48 h-48 relative opacity-80">
+                <div class="absolute w-24 h-24 bg-white/20 rounded-[2rem] top-4 left-4 rotate-12 backdrop-blur-sm animate-pulse"></div>
+                <div class="absolute w-32 h-32 border-4 border-white/30 rounded-full bottom-0 right-0 group-hover:scale-110 transition-transform"></div>
+                <div class="absolute w-16 h-16 bg-secondary rounded-[1rem] top-12 right-6 -rotate-12"></div>
+                <span class="material-symbols-outlined absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-5xl">school</span>
+            </div>
+        </div>
+
+        <!-- Metrics Row -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10 fade-up-stagger">
+            <div class="card p-6 flex flex-col justify-between h-32">
+                <div class="flex justify-between items-start">
+                    <span class="material-symbols-outlined text-muted">calendar_today</span>
+                    <span class="sidebar-label">PENDING</span>
+                </div>
+                <div class="font-bold text-4xl text-primary font-manrope count-up" data-target="12">0</div>
+            </div>
+            
+            <div class="card p-6 flex flex-col justify-between h-32">
+                <div class="flex justify-between items-start">
+                    <span class="material-symbols-outlined text-muted">check_circle</span>
+                    <span class="sidebar-label">SUBMITTED</span>
+                </div>
+                <div class="font-bold text-4xl text-secondary font-manrope count-up" data-target="48">0</div>
+            </div>
+
+            <div class="card p-6 flex flex-col justify-between h-32">
+                <div class="flex justify-between items-start">
+                    <span class="material-symbols-outlined text-muted">trending_up</span>
+                    <span class="sidebar-label">AVG SCORE</span>
+                </div>
+                <div class="font-bold text-4xl text-tertiary font-manrope count-up" data-target="94.2" data-float="true" data-suffix="%">0</div>
+            </div>
+
+            <div class="card p-6 flex flex-col justify-between h-32">
+                <div class="flex justify-between items-start">
+                    <span class="material-symbols-outlined text-muted">menu_book</span>
+                    <span class="sidebar-label">SUBJECTS</span>
+                </div>
+                <div class="font-bold text-4xl text-[var(--on-surface)] font-manrope count-up" data-target="6">0</div>
+            </div>
+        </div>
+
+        <!-- Two Column Layout -->
+        <div class="flex flex-col lg:flex-row gap-10 fade-up">
+            
+            <!-- Left Column (70%) -->
+            <div class="w-full lg:w-[65%]">
+                <div class="flex justify-between items-end mb-6">
+                    <h3>Recent Assignments</h3>
+                    <a href="my-assignments.html" class="font-bold text-primary text-sm hover:underline">See all</a>
+                </div>
+
+                <!-- Assignment List -->
+                <div class="card p-0 overflow-hidden mb-10 border border-[var(--surface-container-high)] shadow-sm">
+                    <div class="flex flex-col">
+                        <!-- Item 1 -->
+                        <a href="submit-assignment.html" class="flex items-center gap-4 p-5 hover:bg-low transition-colors border-b border-[var(--surface-container-high)]">
+                            <div class="icon-container shrink-0 bg-secondary-container text-on-secondary-container rounded-xl">
+                                <span class="material-symbols-outlined">functions</span>
+                            </div>
+                            <div class="flex-1">
+                                <div class="font-bold text-[var(--on-surface)] mb-1">Multivariate Calculus Problem Set</div>
+                                <div class="text-sm text-muted">Mathematics • Due 2 days</div>
+                            </div>
+                            <div class="badge badge-pending">In Progress</div>
+                            <span class="material-symbols-outlined text-muted ml-4">chevron_right</span>
+                        </a>
+
+                        <!-- Item 2 -->
+                        <a href="submit-assignment.html" class="flex items-center gap-4 p-5 bg-lowest hover:bg-low transition-colors border-b border-[var(--surface-container-high)]">
+                            <div class="icon-container shrink-0 bg-tertiary text-white rounded-xl">
+                                <span class="material-symbols-outlined">account_balance</span>
+                            </div>
+                            <div class="flex-1">
+                                <div class="font-bold text-[var(--on-surface)] mb-1">Renaissance Art Synthesis Paper</div>
+                                <div class="text-sm text-muted">History of Art • Due Tomorrow</div>
+                            </div>
+                            <div class="badge badge-urgent">High Priority</div>
+                            <span class="material-symbols-outlined text-muted ml-4">chevron_right</span>
+                        </a>
+
+                        <!-- Item 3 -->
+                        <a href="submit-assignment.html" class="flex items-center gap-4 p-5 bg-low hover:bg-container transition-colors">
+                            <div class="icon-container shrink-0 bg-primary-fixed text-on-primary-fixed rounded-xl">
+                                <span class="material-symbols-outlined">science</span>
+                            </div>
+                            <div class="flex-1">
+                                <div class="font-bold text-[var(--on-surface)] mb-1">Molecular Dynamics Lab Report</div>
+                                <div class="text-sm text-muted">Chemistry • Due 5 days</div>
+                            </div>
+                            <div class="badge" style="background-color: var(--surface-container-highest); color: var(--on-surface);">Not Started</div>
+                            <span class="material-symbols-outlined text-muted ml-4">chevron_right</span>
+                        </a>
+                    </div>
+                </div>
+
+                <h3>Performance Insights</h3>
+                <div class="card mt-6">
+                    <!-- Pure CSS Bar Chart inside -->
+                    <div class="bar-chart font-lexend">
+                        <div class="bar-col">
+                            <div class="bar" style="height: 60%;"></div>
+                            <div class="bar-label">Mon</div>
+                        </div>
+                        <div class="bar-col">
+                            <div class="bar" style="height: 75%;"></div>
+                            <div class="bar-label">Tue</div>
+                        </div>
+                        <div class="bar-col">
+                            <div class="bar" style="height: 85%;"></div>
+                            <div class="bar-label">Wed</div>
+                        </div>
+                        <div class="bar-col">
+                            <div class="bar active" style="height: 92%;"></div>
+                            <div class="bar-label font-bold text-primary">Thu</div>
+                        </div>
+                        <div class="bar-col">
+                            <div class="bar" style="height: 40%;"></div>
+                            <div class="bar-label">Fri</div>
+                        </div>
+                        <div class="bar-col">
+                            <div class="bar" style="height: 10%;"></div>
+                            <div class="bar-label">Sat</div>
+                        </div>
+                        <div class="bar-col">
+                            <div class="bar" style="height: 30%;"></div>
+                            <div class="bar-label">Sun</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column (35%) -->
+            <div class="w-full lg:w-[35%] flex flex-col gap-10">
+                
+                <!-- Notifications Card -->
+                <div class="card flex flex-col h-[400px]">
+                    <div class="flex justify-between items-center mb-6">
+                        <h4>Notifications</h4>
+                        <button class="btn btn-ghost p-2" id="clear-notifications" aria-label="Clear All">
+                            <span class="material-symbols-outlined text-muted text-lg">clear_all</span>
+                        </button>
+                    </div>
+                    
+                    <div id="notifications-list" class="flex-1 overflow-y-auto pr-2 flex flex-col gap-4">
+                        <div class="flex items-start gap-3 p-3 bg-low rounded-xl">
+                            <div class="w-2 h-2 rounded-full bg-primary mt-2 shrink-0"></div>
+                            <div>
+                                <div class="font-bold text-sm">Feedback Available</div>
+                                <div class="text-xs text-muted mb-1">2 hours ago</div>
+                                <div class="text-sm opacity-80">Dr. Vance left detailed remarks on your Microeconomics paper.</div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start gap-3 p-3 bg-error-container rounded-xl text-error">
+                            <div class="w-2 h-2 rounded-full bg-error mt-2 shrink-0"></div>
+                            <div>
+                                <div class="font-bold text-sm">Upcoming Deadline</div>
+                                <div class="text-xs opacity-70 mb-1">5 hours ago</div>
+                                <div class="text-sm opacity-90">History essay final draft is due tomorrow at 11:59 PM.</div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-3 p-3 rounded-xl border border-[var(--surface-container-high)]">
+                            <div class="w-2 h-2 rounded-full bg-[var(--outline)] mt-2 shrink-0"></div>
+                            <div>
+                                <div class="font-bold text-sm">Course Material Added</div>
+                                <div class="text-xs text-muted mb-1">Yesterday</div>
+                                <div class="text-sm opacity-80 text-muted">New slides uploaded for Data Structures Unit 4.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Curriculum Progress Card -->
+                <div class="card flex flex-col items-center justify-center text-center py-10 border-t-4 border-[var(--secondary)]">
+                    <h4 class="mb-6 w-full text-left px-4">Curriculum Progress</h4>
+                    
+                    <div class="circular-gauge mb-6" style="width: 160px; height: 160px;">
+                        <svg width="160" height="160" class="gauge-svg">
+                            <circle cx="80" cy="80" r="70" stroke-width="12" class="gauge-track"></circle>
+                            <!-- Circumference = 2 * PI * 70 = 439.8. Target 75% -> offset 109.95 -->
+                            <circle cx="80" cy="80" r="70" stroke-width="12" class="gauge-progress" style="stroke: var(--secondary); stroke-dasharray: 439.8; stroke-dashoffset: 439.8;" data-target="109.95"></circle>
+                        </svg>
+                        <div style="position: absolute; top:0; left:0; right:0; bottom:0; display:flex; flex-direction:column; align-items:center; justify-content:center;">
+                            <span class="font-bold text-4xl font-manrope text-[var(--on-surface)]">75%</span>
+                            <span class="text-[0.65rem] font-bold tracking-widest uppercase text-muted">Complete</span>
+                        </div>
+                    </div>
+                    
+                    <p class="text-sm font-medium"><span class="text-secondary font-bold">You are ahead</span> of 84% of your peers.</p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Trigger script for dashboard specific logic -->
+    <script src="js/main.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script>
+        // Inline run logic for SVG gauge animation fallback if dashboard.js isn't generic
+        setTimeout(() => {
+            const gauge = document.querySelector('.gauge-progress[data-target]');
+            if(gauge) {
+                gauge.style.strokeDashoffset = gauge.getAttribute('data-target');
+            }
+        }, 300);
+    </script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Portal - EduFlow</title>
+    <!-- Fonts and Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600&family=Manrope:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="css/design-system.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center relative">
+    
+    <!-- Header -->
+    <div class="absolute top-0 w-full p-8 flex justify-between items-center z-10">
+        <a href="index.html" class="btn btn-ghost px-4">
+            <span class="material-symbols-outlined">arrow_back</span> Back
+        </a>
+        <div></div>
+        <button class="theme-toggle btn-icon" id="theme-toggle">
+            <span class="material-symbols-outlined" id="theme-icon">dark_mode</span>
+        </button>
+    </div>
+
+    <!-- Main Content -->
+    <main class="w-full max-w-md px-8 fade-up text-center">
+        <div class="icon-container primary w-20 h-20 mb-8 rounded-2xl mx-auto shadow-ambient">
+            <span class="material-symbols-outlined text-4xl">school</span>
+        </div>
+        
+        <h2 class="mb-2">Student Portal</h2>
+        <p class="text-muted mb-12">Welcome to your academic sanctuary.</p>
+
+        <div class="flex flex-col gap-4">
+            <a href="student-login.html" class="btn btn-primary py-4 px-6 flex items-center text-left w-full hover:-translate-y-1" style="justify-content: space-between;">
+                <div>
+                    <div class="font-bold text-lg text-white">Sign In</div>
+                    <div class="text-xs opacity-80 font-normal mt-1 text-white">I already have an account</div>
+                </div>
+                <span class="material-symbols-outlined text-white">arrow_forward</span>
+            </a>
+
+            <a href="student-register.html" class="btn btn-ghost py-4 px-6 flex items-center text-left w-full border border-[var(--outline-variant)] bg-[var(--surface-container-lowest)] shadow-ambient hover:-translate-y-1" style="justify-content: space-between;">
+                <div>
+                    <div class="font-bold text-lg text-[var(--on-surface)]">Create Account</div>
+                    <div class="text-xs text-muted font-normal mt-1">New to EduFlow? Join now</div>
+                </div>
+                <span class="material-symbols-outlined">person_add</span>
+            </a>
+        </div>
+    </main>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
