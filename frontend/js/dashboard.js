@@ -206,12 +206,34 @@ document.addEventListener('DOMContentLoaded', async () => {
         const ic = iconSet[i % iconSet.length];
         const dueText = formatDue(a.dueDate);
         const tutorName = a.createdBy?.name || 'Tutor';
-        const isSubmitted = submittedIds.has(a._id.toString());
-        const cardStatus = isSubmitted ? 'submitted' : 'pending';
+        const mySubmission = submissions.find(s => (s.assignmentId?._id || s.assignmentId || '').toString() === a._id.toString());
+        const isSubmitted = !!mySubmission;
+        
+        let cardStatus = 'pending';
+        let badgeText = dueText;
+        let finalBadgeClass = badge.class;
+        let finalBadgeStyle = (!isSubmitted && badge.style) ? `style="${badge.style}"` : '';
+
+        if (isSubmitted) {
+          if (mySubmission.status === 'confirmed') {
+            cardStatus = 'graded';
+            finalBadgeClass = 'badge-graded';
+            badgeText = '✓ Graded';
+          } else if (mySubmission.status === 'ai_reviewed') {
+            cardStatus = 'ai-review';
+            finalBadgeClass = 'badge-pending';
+            badgeText = 'Under Review';
+          } else {
+            cardStatus = 'submitted';
+            finalBadgeClass = 'badge-graded'; // default styling for just submitted
+            badgeText = '✓ Submitted';
+          }
+          finalBadgeStyle = '';
+        }
 
         return `
           <div class="card assignment-card flex flex-col pt-8 card-accent-left relative" data-status="${cardStatus}">
-            <div class="absolute top-4 right-4 badge ${isSubmitted ? 'badge-graded' : badge.class} shadow-sm" ${(!isSubmitted && badge.style) ? `style="${badge.style}"` : ''}>${isSubmitted ? '✓ Submitted' : dueText}</div>
+            <div class="absolute top-4 right-4 badge ${finalBadgeClass} shadow-sm" ${finalBadgeStyle}>${badgeText}</div>
             <div class="overline ${colorClass} mb-4">${a.course.toUpperCase()}</div>
             <h3 class="mb-3 leading-tight">${a.title}</h3>
             <p class="text-muted text-sm mb-4 flex-1">${a.description}</p>
@@ -268,7 +290,19 @@ document.addEventListener('DOMContentLoaded', async () => {
       const cardStatus = card.getAttribute('data-status');
       const cardTitle = card.querySelector('h3')?.textContent.toLowerCase() || '';
       
-      const statusMatch = status === 'all' || cardStatus === status;
+      let statusMatch = false;
+      if (status === 'all') {
+        statusMatch = true;
+      } else if (status === 'submitted') {
+        // "Submitted" tab shows EVERYTHING that has been submitted
+        statusMatch = ['submitted', 'ai-review', 'graded'].includes(cardStatus);
+      } else if (status === 'ai-review') {
+        // "Under Review" tab shows anything submitted but NOT YET graded
+        statusMatch = ['submitted', 'ai-review'].includes(cardStatus);
+      } else {
+        statusMatch = cardStatus === status;
+      }
+      
       const queryMatch = cardTitle.includes(q);
       
       if (statusMatch && queryMatch) {

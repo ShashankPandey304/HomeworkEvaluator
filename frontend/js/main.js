@@ -3,11 +3,33 @@ document.addEventListener('DOMContentLoaded', () => {
   const themeToggle = document.getElementById('theme-toggle');
   const themeIcon = document.getElementById('theme-icon');
   
-  if (themeToggle && themeIcon) {
+  function applySavedTheme() {
     const savedTheme = localStorage.getItem('eduflow-theme') || 'light';
     document.documentElement.setAttribute('data-theme', savedTheme);
-    updateThemeIcon(savedTheme, themeIcon);
+    const icon = document.getElementById('theme-icon');
+    if (icon) {
+      updateThemeIcon(savedTheme, icon);
+    }
+  }
 
+  // Apply on initial load
+  applySavedTheme();
+
+  // Listen to bfcache restore (when user presses back button)
+  window.addEventListener('pageshow', (e) => {
+    if (e.persisted) {
+      applySavedTheme();
+    }
+  });
+
+  // Listen to storage changes across tabs
+  window.addEventListener('storage', (e) => {
+    if (e.key === 'eduflow-theme') {
+      applySavedTheme();
+    }
+  });
+  
+  if (themeToggle && themeIcon) {
     themeToggle.addEventListener('click', () => {
       let currentTheme = document.documentElement.getAttribute('data-theme');
       let newTheme = currentTheme === 'dark' ? 'light' : 'dark';

@@ -53,12 +53,12 @@
   --glow-accent: 0 0 20px rgba(102, 126, 234, 0.2);
 
   /* PREMIUM SHADOWS */
-  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
-  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
-  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.1);
-  --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.12);
-  --shadow-2xl: 0 24px 64px rgba(0, 0, 0, 0.16);
+  --shadow-xs: 0 2px 4px rgba(0, 30, 45, 0.03), 0 1px 2px rgba(0, 30, 45, 0.04);
+  --shadow-sm: 0 6px 12px rgba(0, 30, 45, 0.03), 0 4px 6px rgba(0, 30, 45, 0.04);
+  --shadow-md: 0 12px 24px rgba(0, 30, 45, 0.04), 0 8px 12px rgba(0, 30, 45, 0.02);
+  --shadow-lg: 0 24px 48px rgba(0, 30, 45, 0.05), 0 12px 24px rgba(0, 30, 45, 0.03);
+  --shadow-xl: 0 32px 64px rgba(0, 30, 45, 0.06), 0 16px 32px rgba(0, 30, 45, 0.04);
+  --shadow-2xl: 0 48px 96px rgba(0, 30, 45, 0.08), 0 24px 48px rgba(0, 30, 45, 0.05);
 
   /* TRANSITIONS */
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -122,9 +122,17 @@ html[data-theme="dark"] {
   --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 
   /* DARK GLOWS */
-  --glow-primary: 0 0 20px rgba(135, 208, 242, 0.1), 0 0 60px rgba(135, 208, 242, 0.03);
-  --glow-secondary: 0 0 20px rgba(132, 212, 211, 0.1), 0 0 60px rgba(132, 212, 211, 0.03);
+  --glow-primary: 0 0 20px rgba(135, 208, 242, 0.1), 0 0 60px rgba(135, 208, 242, 0.05);
+  --glow-secondary: 0 0 20px rgba(132, 212, 211, 0.1), 0 0 60px rgba(132, 212, 211, 0.05);
   --glow-accent: 0 0 20px rgba(167, 139, 250, 0.15);
+
+  /* DARK SHADOWS */
+  --shadow-xs: 0 2px 4px rgba(0, 0, 0, 0.4), 0 1px 2px rgba(0, 0, 0, 0.5);
+  --shadow-sm: 0 6px 12px rgba(0, 0, 0, 0.4), 0 4px 6px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 12px 24px rgba(0, 0, 0, 0.5), 0 8px 12px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 24px 48px rgba(0, 0, 0, 0.6), 0 12px 24px rgba(0, 0, 0, 0.4);
+  --shadow-xl: 0 32px 64px rgba(0, 0, 0, 0.7), 0 16px 32px rgba(0, 0, 0, 0.5);
+  --shadow-2xl: 0 48px 96px rgba(0, 0, 0, 0.8), 0 24px 48px rgba(0, 0, 0, 0.6);
 }
 
 /* ========================================
@@ -154,16 +162,16 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: "Manrope", sans-serif;
-  font-weight: 700;
+  font-weight: 800; /* Bolder headers */
   color: var(--on-surface);
-  letter-spacing: -0.02em;
-  line-height: 1.2;
+  letter-spacing: -0.025em; /* Tighter letter spacing for a modern look */
+  line-height: 1.15;
 }
 
-h1 { letter-spacing: -0.03em; font-weight: 800; font-size: clamp(2.5rem, 5vw, 4rem); }
-h2 { font-size: clamp(2rem, 4vw, 3rem); }
-h3 { font-size: 1.75rem; }
-h4 { font-size: 1.5rem; }
+h1 { letter-spacing: -0.04em; font-size: clamp(2.5rem, 5vw, 4.5rem); }
+h2 { font-size: clamp(2rem, 4vw, 3.25rem); }
+h3 { font-size: clamp(1.5rem, 3vw, 2rem); }
+h4 { font-size: clamp(1.25rem, 2vw, 1.5rem); }
 
 a {
   color: inherit;
@@ -195,14 +203,21 @@ a {
 }
 
 /* ========================================
+   POINTER & TRANSITIONS
+   ======================================== */
+.cursor-pointer { cursor: pointer; }
+.transition-colors { transition: background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s cubic-bezier(0.4, 0, 0.2, 1), fill 0.2s cubic-bezier(0.4, 0, 0.2, 1), stroke 0.2s cubic-bezier(0.4, 0, 0.2, 1); }
+.hover\:text-error:hover { color: var(--error); }
+
+/* ========================================
    TYPOGRAPHY UTILITIES
    ======================================== */
-.text-primary { color: var(--primary); }
-.text-secondary { color: var(--secondary); }
-.text-tertiary { color: var(--tertiary); }
-.text-error { color: var(--error); }
-.text-muted { color: var(--outline); }
-.text-white { color: #ffffff; }
+.text-primary { color: var(--primary) !important; }
+.text-secondary { color: var(--secondary) !important; }
+.text-tertiary { color: var(--tertiary) !important; }
+.text-error { color: var(--error) !important; }
+.text-muted { color: var(--outline) !important; }
+.text-white { color: #ffffff !important; }
 .text-center { text-align: center; }
 
 .font-bold { font-weight: 700; }
@@ -223,17 +238,17 @@ a {
 /* ========================================
    BACKGROUND UTILITIES
    ======================================== */
-.bg-surface { background-color: var(--surface); }
-.bg-lowest { background-color: var(--surface-container-lowest); }
-.bg-low { background-color: var(--surface-container-low); }
-.bg-container { background-color: var(--surface-container); }
-.bg-high { background-color: var(--surface-container-high); }
-.bg-highest { background-color: var(--surface-container-highest); }
-.bg-primary { background-color: var(--primary); }
-.bg-primary-container { background-color: var(--primary-container); }
-.bg-secondary-container { background-color: var(--secondary-container); }
-.bg-error-container { background-color: var(--error-container); }
-.bg-gradient { background: var(--signature-gradient); }
+.bg-surface { background-color: var(--surface) !important; }
+.bg-lowest { background-color: var(--surface-container-lowest) !important; }
+.bg-low { background-color: var(--surface-container-low) !important; }
+.bg-container { background-color: var(--surface-container) !important; }
+.bg-high { background-color: var(--surface-container-high) !important; }
+.bg-highest { background-color: var(--surface-container-highest) !important; }
+.bg-primary { background-color: var(--primary) !important; }
+.bg-primary-container { background-color: var(--primary-container) !important; }
+.bg-secondary-container { background-color: var(--secondary-container) !important; }
+.bg-error-container { background-color: var(--error-container) !important; }
+.bg-gradient { background: var(--signature-gradient) !important; }
 .bg-glass {
   background: var(--glass-bg);
   backdrop-filter: blur(var(--glass-blur));
