@@ -5,6 +5,7 @@
     <strong>An advanced, AI-powered academic platform streamlining the assignment lifecycle for both tutors and students.</strong>
     <br />
     <br />
+    <a href="https://assignment-evaluator-2avi.onrender.com">🌍 Live Demo</a> &middot;
     <a href="#-features">Features</a> &middot;
     <a href="#-tech-stack">Tech Stack</a> &middot;
     <a href="#-getting-started">Getting Started</a> &middot;
