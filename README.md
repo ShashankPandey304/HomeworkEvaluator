@@ -95,6 +95,9 @@ Follow these instructions to set up the EduFlow platform on your local machine f
    ```bash
    node seed-tutors.js
    ```
+   **Default Tutor Login (from seed file):**
+   * Email: `tutor@eduflow.com`
+   * Password: `tutor1234`
 
 5. **Run the Application**
    Open a terminal and start the backend server:
